@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>stuff</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/carousel.css">
+    <!-- endbuild -->
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="carousel">
+
+            <div class="active-slide"><figure class="a">one</figure></div>
+
+            <div><figure class="b">two</figure></div>
+
+            <div><figure class="c">three</figure></div>
+
+            <div><figure class="d">four</figure></div>
+
+            <div><figure class="e">five</figure></div>            
+
+        </div>
+
+    </div>
+
+    <a href="" id="prev">prev</a>
+    <a href="" id="next">next</a>
+    <br>
+    <a href="" class="nav">0</a>
+    <a href="" class="nav">1</a>
+    <a href="" class="nav">2</a>
+    <a href="" class="nav">3</a>
+    <a href="" class="nav">4</a>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/carousel.js"></script>
+    <!-- endbuild -->
+
+    <script>
+        var carousel = new Carousel('.carousel');
+        
+        carousel.element().addEventListener('beforeSlide', function(){
+            console.log('before slide')
+        });
+        carousel.element().addEventListener('afterSlide', function(){
+            console.log('after slide')
+        });
+        document.getElementById('next').onclick = function(e){
+            e.preventDefault();
+            carousel.goToSlide('next');
+        }
+        document.getElementById('prev').onclick = function(e){
+            e.preventDefault();            
+            carousel.goToSlide('prev');
+        }
+        for(var i = 0, l = document.querySelectorAll('.nav').length; i < l; i++){
+            document.querySelectorAll('.nav')[i].onclick = function(e){
+                e.preventDefault();                            
+                carousel.goToSlide(parseInt(e.currentTarget.innerHTML));
+            }
+        }
+    </script>
+
+</body>
+</html>
